@@ -4,10 +4,10 @@ import {
   Container,
   Title,
   SectionTitle,
-} from "./components/Container/Container.styled.jsx";
-import Form from "./components/Form/Form.jsx";
-import ContactList from "./components/ContactList/ContactList.jsx";
-import Input from "./components/Input/Input.jsx";
+} from "./Container/Container.styled.jsx";
+import Form from "./Form/Form.jsx";
+import ContactList from "./ContactList/ContactList.jsx";
+import Input from "./Input/Input.jsx";
 
 export default class App extends Component {
   state = {
