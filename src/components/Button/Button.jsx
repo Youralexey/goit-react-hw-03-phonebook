@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { CustomButton } from "./Button.styled";
 
@@ -8,5 +9,10 @@ function Button({ text, type, onClick }) {
     </CustomButton>
   );
 }
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
 
 export default Button;
