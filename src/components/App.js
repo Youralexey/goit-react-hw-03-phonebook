@@ -1,5 +1,5 @@
 import { Component } from "react";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import {
   Container,
   Title,
@@ -35,28 +35,29 @@ export default class App extends Component {
     }
   }
 
-  // formSubmitHandle = ({ name, number }) => {
-  //   const contact = { name, number, id: uuidv4() };
-
-  //   this.state.contacts.find((savedContact) => savedContact.name === name)
-  //     ? alert(`${name} is already in contacts`)
-  //     : this.setState((prevState) => ({
-  //         contacts: [...prevState.contacts, contact],
-  //       }));
-  //   console.log(contact);
-  // };
-
-  getAddContacts = (name) => {
+  addContact = (name, number) => {
     const { contacts } = this.state;
-    const newContact = name.toLowerCase();
-    const savedContacts = contacts.find(
-      (contact) => contact.name.toLowerCase() === newContact
+    const checkedForName = contacts.find(
+      (contact) => name.toLowerCase() === contact.name.toLowerCase()
     );
 
-    if (savedContacts) {
-      alert(name + " is already in contacts.");
-      return;
+    if (checkedForName) {
+      return alert(`${name} is already in contacts`);
     }
+
+    const newContact = {
+      id: uuidv4(),
+      name,
+      number,
+    };
+
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, newContact],
+    }));
+  };
+
+  formSubmitHandle = ({ name, number }) => {
+    this.addContact(name, number);
   };
 
   handleDelete = (contactId) => {
@@ -87,7 +88,7 @@ export default class App extends Component {
     return (
       <Container>
         <Title>Phonebook</Title>
-        <Form handleSubmit={this.addContacts} />
+        <Form onSubmit={this.formSubmitHandle} />
         <SectionTitle>Contacts</SectionTitle>
         <Input
           name="Find contacts by name"

@@ -12,21 +12,23 @@ export default class Form extends Component {
   };
 
   handleSetInfo = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-    //   console.log(this.state);
+    const { name, value } = e.currentTarget;
+
+    this.setState({
+      [name]: value,
+    });
   };
 
   handleAddContact = (e) => {
     e.preventDefault();
 
-    this.props.handleSubmit(this.state);
+    this.props.onSubmit(this.state);
     // console.log('Стейт формы>', this.state);
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: "", number: ""});
+    this.setState({ name: "", number: "" });
   };
 
   render() {
